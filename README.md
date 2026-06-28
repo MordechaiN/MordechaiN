@@ -21,7 +21,7 @@
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║        BRIDGING LAW · INFRASTRUCTURE · AUTOMATION           ║
+║        BRIDGING LAW · INFRASTRUCTURE · AUTOMATION            ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
@@ -34,16 +34,22 @@
 ```yaml
 name:     Mordechai Neeman
 firm:     Neeman Firm
+
 roles:
-  - Attorney  (Israeli Bar)
-  - Bookkeeper & Tax Advisor  (Type A + Type B License)
-  - Infrastructure Builder
-  - Automation Enthusiast
+  - Attorney            (Israeli Bar)
+  - Tax Advisor          & Bookkeeper  (Type A + Type B License)
+  - Backend & Systems Developer
+  - Self-Hosted Infrastructure Builder
+
+focus:
+  - Real Estate Law · Tax Law · SMB Advisory
+  - Optimization tooling (constraint solvers, calculators, automation)
+  - Self-hosted infrastructure that runs unattended
 
 philosophy:
   - Automate the repetitive.
+  - Prove the answer is optimal — don't estimate it.
   - Build systems that work without attention.
-  - Find the structure underneath every problem.
 ```
 
 ---
@@ -80,14 +86,30 @@ Financial Operations
 
 ---
 
-## ⚙️ Infrastructure Stack
+## ⚙️ Tech Stack
 
-**Platform**
+**Backend & Tooling**
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+
+**Optimization & Data**
+
+![Google OR-Tools](https://img.shields.io/badge/OR--Tools-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![REST API](https://img.shields.io/badge/REST_API-005571?style=for-the-badge&logo=fastapi&logoColor=white)
+
+**Platform & DevOps**
 
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Proxmox](https://img.shields.io/badge/Proxmox-E57000?style=for-the-badge&logo=proxmox&logoColor=white)
 ![OpenMediaVault](https://img.shields.io/badge/OMV-5DACDF?style=for-the-badge&logo=openmediavault&logoColor=white)
+![Oracle Cloud](https://img.shields.io/badge/Oracle_Cloud-F80000?style=for-the-badge&logo=oracle&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 **Networking**
 
@@ -95,19 +117,12 @@ Financial Operations
 ![Caddy](https://img.shields.io/badge/Caddy-1F88C0?style=for-the-badge&logo=caddy&logoColor=white)
 ![AdGuard](https://img.shields.io/badge/AdGuard_Home-68BC71?style=for-the-badge&logo=adguard&logoColor=white)
 
-**Automation & Services**
+**Automation & Self-Hosted Services**
 
 ![Home Assistant](https://img.shields.io/badge/Home_Assistant-41BDF5?style=for-the-badge&logo=home-assistant&logoColor=white)
 ![Portainer](https://img.shields.io/badge/Portainer-13BEF9?style=for-the-badge&logo=portainer&logoColor=white)
 ![Immich](https://img.shields.io/badge/Immich-4250AF?style=for-the-badge&logo=immich&logoColor=white)
 ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)
-
-**Languages**
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 
 ---
 
@@ -115,15 +130,14 @@ Financial Operations
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  HPE ProLiant ML30 Gen10  ·  Proxmox VE  ·  Docker             │
+│  HPE ProLiant ML30 Gen10  ·  Proxmox VE  ·  Docker / Portainer  │
 │  ─────────────────────────────────────────────────────────────  │
-│  Home Assistant  ·  Caddy  ·  AdGuard Home                     │
-│  Immich  ·  Portainer  ·  n8n  ·  Telegram Bots                │
+│  Home Assistant  ·  Caddy (reverse proxy)  ·  AdGuard Home      │
+│  Immich  ·  n8n  ·  Telegram Bots  ·  Oracle Cloud (offload)    │
 │  ─────────────────────────────────────────────────────────────  │
-│  Reverse proxy with automated TLS                               │
-│  Internal DNS  ·  Zero-trust remote access                      │
+│  Automated TLS  ·  Internal DNS  ·  Zero-trust remote access    │
 │  ─────────────────────────────────────────────────────────────  │
-│  One server. Everything runs. Nothing is optional.              │
+│  One server. Everything runs. Nothing is optional.               │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -134,59 +148,88 @@ Financial Operations
 ```python
 class MordechaiNeeman:
 
-    roles      = ["Attorney", "Tax Advisor", "Bookkeeper", "Infrastructure Builder"]
-    principles = ["Automate the repetitive", "Build quietly", "Find the system underneath"]
+    roles      = ["Attorney", "Tax Advisor", "Bookkeeper", "Systems Builder"]
+    principles = ["Automate the repetitive", "Prove it, don't estimate it", "Build quietly"]
 
     def approach(self, problem):
-        if problem.is_repetitive():        return self.automate(problem)
-        elif problem.is_legal_financial(): return self.analyze_then_optimize(problem)
-        elif problem.is_infrastructure():  return self.build_it_properly(problem)
-        else:                              return self.find_the_system_underneath(problem)
+        if problem.has_an_optimal_solution():  return self.solve_with_proof(problem)
+        elif problem.is_repetitive():           return self.automate(problem)
+        elif problem.is_legal_financial():      return self.analyze_then_optimize(problem)
+        elif problem.is_infrastructure():       return self.build_it_properly(problem)
+        else:                                   return self.find_the_system_underneath(problem)
 ```
 
 ---
 
-## 🎮 Projects
+## 🚀 Projects
 
 <br>
 
-<div align="center">
-<a href="https://github.com/MordechaiN/VoidMachine">
-<img src="https://i.imgur.com/2rkxSTe.png" width="420" alt="VoidMachine" />
-</a>
-</div>
+### 🛒 [Cart Optimizer](https://github.com/MordechaiN/Cart-Optimizer)
 
-<br>
+**Provably-optimal multi-store cart splitting**
 
-### [VoidMachine](https://github.com/MordechaiN/VoidMachine)
+Splits a shopping cart across stores and orders to find the mathematically cheapest combination — accounting for coupons, shipping thresholds, and customs limits. Built on **Google OR-Tools CP-SAT**: it doesn't estimate the best split, it proves it. FastAPI backend, clean domain/application/api layering, full test suite, Docker-first deployment, runs entirely offline with no account or tracking.
 
-**Atmospheric Ritual System — Paper Minecraft Plugin**
+**Why it matters:** most cart calculators guess. This one solves a constraint-satisfaction problem and shows the proof.
 
-A cinematic multiplayer event engine built on Paper. Void-triggered ritual sequences, procedural atmospheric effects, and synchronized multiplayer outcomes — engineered for immersion. Runs on Java and Bedrock clients via Geyser/Floodgate.
-
-Not a plugin. An engineered gameplay environment.
-
-`Java` · `Paper API` · `Geyser/Floodgate` · `Event Systems`
+`Python` · `FastAPI` · `Google OR-Tools (CP-SAT)` · `Docker` · `pytest`
 
 ---
 
-### 🛒 [AliExpress Coins Collector](https://github.com/MordechaiN/aliexpress-coins-collector-chrome)
+### ⬛ [VoidMachine](https://github.com/MordechaiN/VoidMachine)
 
-**Browser Workflow Automation**
+**Crash-safe ritual economy sink — PaperMC plugin**
 
-Chrome extension that eliminates a repetitive daily task. One trigger. No maintenance. Does exactly one thing, reliably.
+A physical, cinematic risk/reward machine for Minecraft survival servers: players sacrifice items for a chance at a multiplied return, staged through a write-ahead log so a server crash never costs a player their items. Eleven build phases took it from a basic GUI gambling plugin to a full transaction state machine (`CAPTURED → ANIMATING → DELIVERING → COMPLETED/FAILED`) with startup recovery, anti-dupe protections, and a documented security-disclosure process. Full Bedrock support via Geyser/Floodgate.
 
-`JavaScript` · `Chrome Extension` · `Task Automation`
+**Why it matters:** the interesting part isn't the gameplay loop, it's the durability engineering underneath it — `fsync`'d checkpoints, atomic machine locks, and pre-rolled outcomes that survive disconnects, crashes, and chunk unloads.
+
+`Java 21` · `PaperMC` · `Geyser/Floodgate` · `HikariCP` · `WAL / Crash Recovery`
+
+---
+
+### 🍽️ [Table Rush](https://github.com/MordechaiN/TableRush) · [▶ Play](https://MordechaiN.github.io/TableRush/)
+
+**Real-time 3D restaurant rush, built entirely procedurally**
+
+A one-tap restaurant management game rendered in real-time 3D with Three.js — every asset (room, characters, food, effects) is generated in code, no sprite sheets or art files. Started as a 2D Phaser prototype; a Three.js feasibility prototype proved the 3D direction held at ~20k triangles and ~170 draw calls, so the game was rebuilt on top of it with the balance, progression, and audio systems carried over unchanged.
+
+**Why it matters:** a complete render → gameplay → progression pipeline with no external assets and a documented decision trail from prototype to rebuild.
+
+`TypeScript` · `Three.js` · `Vite` · `Web Audio API` · `GitHub Actions (Pages deploy)`
 
 ---
 
 ### 📈 [Crypto Position Calculator — Hebrew](https://github.com/MordechaiN/Crypto-Position-Calculator-Hebrew)
 
-**Precision Risk Management Tool**
+**Precision risk-management tool for Israeli traders**
 
-Position sizing and risk calculation for traders. Hebrew-first interface, exact arithmetic, built for Israeli traders who need clean numbers without noise.
+A desktop GUI for calculating profit/loss on long and short crypto positions, including leverage and fees. Hebrew-first interface built for traders who want exact numbers without noise or a web dependency.
 
-`JavaScript` · `Risk Calculation` · `Hebrew UI`
+`Python` · `Tkinter` · `Hebrew UI`
+
+---
+
+### ✂️ [Omri Tzur Magen — Barbershop Website](https://github.com/MordechaiN/OmriBarberShop-Website)
+
+**Production-grade client site, zero dependencies**
+
+A premium, fully Hebrew/RTL barbershop landing site for a client — vanilla HTML/CSS/JS with no build step and no framework. Hardened with CSP, HSTS-ready headers, and no `innerHTML`/`eval`; ships as an installable PWA with offline support via service worker, plus full SEO (Schema.org, Open Graph, sitemap).
+
+**Why it matters:** proof that "no dependencies" doesn't mean "no security" — production headers, accessibility, and SEO done properly on a static site.
+
+`HTML5` · `CSS3` · `Vanilla JS` · `PWA` · `Service Worker`
+
+---
+
+### 🛍️ [AliExpress Coins Collector](https://github.com/MordechaiN/aliexpress-coins-collector-chrome) · [Firefox build](https://github.com/MordechaiN/aliexpress-coins-collector-firefox)
+
+**Scheduled browser automation, Chrome + Firefox**
+
+A browser extension that automates AliExpress's daily coin-collection routine on a fixed schedule, with link management, dark mode, and cross-device sync. Maintained as parallel Manifest V3 (Chrome) and WebExtension (Firefox) builds sharing the same feature set.
+
+`JavaScript (ES6+)` · `Manifest V3 / WebExtensions` · `Chrome & Firefox Storage Sync`
 
 ---
 
@@ -194,7 +237,7 @@ Position sizing and risk calculation for traders. Hebrew-first interface, exact 
 
 <div align="center">
 
-<img height="155" src="https://github-readme-stats.vercel.app/api?username=MordechaiN&show_icons=true&theme=github_dark&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=1A3A5C&text_color=484F58&count_private=true" />&nbsp;&nbsp;<img height="155" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MordechaiN&layout=compact&theme=github_dark&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=484F58&langs_count=5" />
+<img height="155" src="https://github-readme-stats.vercel.app/api?username=MordechaiN&show_icons=true&theme=github_dark&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=1A3A5C&text_color=484F58&count_private=true" />&nbsp;&nbsp;<img height="155" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MordechaiN&layout=compact&theme=github_dark&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=484F58&langs_count=6" />
 
 </div>
 
@@ -210,8 +253,8 @@ Position sizing and risk calculation for traders. Hebrew-first interface, exact 
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║   Attorney · Tax Advisor · Infrastructure Builder           ║
-║   Neeman Firm  ·  Israel  ·  MordechaiNeeman@outlook.com    ║
+║   Attorney · Tax Advisor · Infrastructure Builder            ║
+║   Neeman Firm  ·  Israel  ·  MordechaiNeeman@outlook.com     ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
